@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% load static %}
+<header class="row">
+  <div class="col-md-4">
+    <img src="{% static 'emile.jpg' %}" alt="" width="200" height="200">
+  </div>
+  <div class="col-md-8">
+    <h1><strong>Émile Zola</strong></h1>
+    <h3>Novelista francés, teórico y máximo representante del naturalismo.</h3>
+    <p>"Con su mirada tranquila y suavidad infinita, mi gato es el reflejo perfecto del amor en su forma más pura y serena."</p>
+    <li class="nav-item d-flex align-items-center">
+        <a class="btn btn-primary btn-lg rounded-0 my-3" href="{% static 'paraiso.pdf' %}">Leer ahora</a>
+    </li>
+  </div>
+</header>
+
+<header class="row"> <!-- Agregado -->
+    <div class="col-md-8">
+        <h1><strong>El paraiso de los gatos</strong></h1>
+        <h3>Cuento sobre la vida y destinos sociales </h3>
+        <p>El paraíso de los gatos es una fábula sobre la vida de los gatos, esos buenos amigos de los hombres. 
+            El filósofo francés Taine, amigo de Zola, dijo que habiendo estudiado detenidamente a los filósofos 
+            y a los gatos, encontraba mucho más sabios a los gatos. El cuento plantea una interesante discusión. 
+            ¿Debemos buscar en la vida la seguridad ante todo? ¿O hay otras cosas que quizás valgan más la pena, 
+            como la búsqueda de aventuras o de ideales? El simpático gato protagonista de esta historia nos cuenta
+             con toda sinceridad su experiencia y sus razones, 
+            y también las de sus compañeros de aventuras, y con ello nos trasladan estas preguntas a los lectores.
+          </p>
+        <a class="btn btn-primary btn-lg rounded-0 my-3" href="{% static 'paraiso.pdf' %}" target="_blank">Leer libro</a>
+    </div>
+</header> <!-- Cerrado -->
+<!-- Porfolio Section -->
+<div class="row my-4 text-center">
+
+  <h3>BIBLIOTECA</h3>
+  <p>Descubre con Cleo</p>
+
+  {% for project in projects %}
+  <div class="col-md-4 p-4">
+    <div class="card bg-black card-project">
+      <img src="{{project.image.url }}" class="card-img-top" />
+
+      <div class="card-body">
+
+        <h2>{{ project.title }}</h2>
+        <p>{{ project.description }}</p>
+
+        {% if project.url %}
+        <a href="{{project.url}}" class="btn btn-light rounded-0 btn-sm" target="__blank" rel="noreferrer">Detallitos</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+
+{% endblock %}

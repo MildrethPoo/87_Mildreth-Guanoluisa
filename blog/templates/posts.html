@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<style>
+    body {
+        background: #090909;
+    }
+
+    .bg-black {
+        background: #090909;
+    }
+
+    .card-project:hover {
+        border: 1px solid #f9f9f9;
+        cursor: pointer;
+    }
+    .card-project {
+    display: flex; /* Utiliza flexbox para alinear los elementos */
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.card-project img {
+    max-width: 50%; /* Establece el ancho máximo de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin-left: auto; /* Coloca la imagen en el lado derecho */
+}
+
+</style>
+<h1 style="color: white;">Post hechos de "blog" </h1> 
+{% for post in posts %}
+    <div class="card mb-3 bg-black text-white">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid" style="max-height: 200px;">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="card-text">{{ post.description | safe | truncatechars:100 }}</p>
+                    <p class="card-text">{{ post.date|date:'M d Y'|upper }}</p>
+                    <a href="{% url 'blog:post_detail' post.id %}" class="btn btn-primary">Detalle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}
